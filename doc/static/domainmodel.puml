@@ -1,10 +1,56 @@
 @startuml
 'https://plantuml.com/object-diagram
+title SP3 - overblik over softwareSystem
 
-object
-object
-object
-object
+object Bruger
+object streamingTjeneste
+object Netflix
+object HBO
+object viaPlay
+object Tv2
+object film
+object serie
+object kategori
+object medieForm
+object crime
+object romance
+object sci-fi
+object war
+object drama
+object comedy
+
+
+
+
+Bruger --* streamingTjeneste
+
+streamingTjeneste <|-- Netflix
+streamingTjeneste <|-- HBO
+streamingTjeneste <|-- viaPlay
+streamingTjeneste <|-- Tv2
+film *-- kategori
+serie *-- kategori
+Netflix *-- medieForm
+HBO *-- medieForm
+viaPlay *-- medieForm
+Tv2 *-- medieForm
+medieForm <|-- film
+medieForm <|-- serie
+kategori <|-- drama
+kategori <|-- crime
+kategori <|-- romance
+kategori <|-- sci-fi
+kategori <|-- war
+kategori <|-- comedy
+
+
+
+
+
+
+
+
+
 
 
 @enduml
