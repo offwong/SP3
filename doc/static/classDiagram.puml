@@ -11,14 +11,23 @@ abstract class StreamingPlatform {
     + StreamingPlatform(String name)
     + void createUser()
     + void logIn()
-    + void addMedia(MediaType media)
+
+
+class User {
+- String username
+-String password
+- ArrayList <MediaType> watchedMedia
+- ArrayList <MediaType> savedMedia
+
++ User(String username, String password)
++ String getUsername()
++ String getPassword()
+
 }
 
+
 ' Specifikke underklasser (kun hvis de har unik logik)
-class Netflix extends StreamingPlatform
-class Viaplay extends StreamingPlatform
-class HBO extends StreamingPlatform
-class TV2 extends StreamingPlatform
+
 
 ' Abstract superklasse for medier
 abstract class MediaType {
@@ -47,6 +56,27 @@ class Category {
 
     + Category(String name)
 }
+
+package "util"{
+class TextUI{
+   Scanner scan
+   + String promptText(String msg)
+   + int promptNumeric(String msg)
+   + void displayList(ArrayList<String> list, String msg)
+   + void displayMessage(String msg)
+
+}
+
+class FileIO{
+
+    + ArrayList<User> readUserData(String filePath)
+    + void saveUserData(String filepath, ArrayList<User> users)
+
+
+}
+}
+
+
 
 ' Relationer
 StreamingPlatform "1" o-- "*" MediaType : indeholder
