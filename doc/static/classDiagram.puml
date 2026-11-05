@@ -1,9 +1,12 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-class StreamingPlatform {
+
+abstract class StreamingPlatform {
 - String name;
 + StreamingPlatform(String name)
++ createUser();
++ logIn();
 }
 
 class Netflix {
@@ -30,14 +33,16 @@ class MediaType {
 
 class Movie {
 - String name;
+- double rating;
 - ArrayList<Category>Categories
-+ Movie(String type, String name)
++ Movie(String type, String name,double rating)
 }
 
 class Series {
 - String name;
+- double rating;
 - ArrayList<Category>Categories
-+ Series(String type, String name)
++ Series(String type, String name, double rating)
 }
 
 class Category {
