@@ -1,5 +1,8 @@
 @startuml
 
+
+
+
 ' Superklasse for streamingtjenester
 abstract class StreamingPlatform {
     - String name
