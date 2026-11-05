@@ -2,7 +2,6 @@
 
 
 
-
 ' Superklasse for streamingtjenester
 abstract class StreamingPlatform {
     - String name
@@ -47,6 +46,8 @@ class Category {
 
     + Category(String name)
 }
+
+
 
 ' Relationer
 StreamingPlatform "1" o-- "*" MediaType : indeholder
