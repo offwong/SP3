@@ -47,6 +47,7 @@ class Series {
 
 class Category {
 -String name
+
 }
 
 
