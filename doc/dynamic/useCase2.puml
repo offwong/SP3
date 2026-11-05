@@ -4,6 +4,7 @@
 
 actor user
 
+
 rectangle Streamingtjeneste {
   usecase "StartTjeneste" as UC1
   usecase "registreBruger" as UC2
