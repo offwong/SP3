@@ -1,0 +1,62 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class StreamingPlatform {
+- String name;
++ StreamingPlatform(String name)
+}
+
+class Netflix {
+- ArrayList<MediaType>MediaTypes
++ Netflix(String name,
+}
+
+class Viaplay {
+- ArrayList<MediaType>MediaTypes
+}
+
+class HBO {
+- ArrayList<MediaType>MediaTypes
+}
+
+class TV2 {
+- ArrayList<MediaType>MediaTypes
+}
+
+class MediaType {
+- String type;
++ MediaType(String type)
+}
+
+class Movie {
+- String name;
+- ArrayList<Category>Categories
++ Movie(String type, String name)
+}
+
+class Series {
+- String name;
+- ArrayList<Category>Categories
++ Series(String type, String name)
+}
+
+class Category {
+-String name
+}
+
+
+
+StreamingPlatform <|-- Netflix
+StreamingPlatform <|-- Viaplay
+StreamingPlatform <|-- HBO
+StreamingPlatform <|-- TV2
+Netflix *-- MediaType
+Viaplay *-- MediaType
+HBO *-- MediaType
+TV2 *-- MediaType
+MediaType <|-- Movie
+MediaType <|-- Series
+Movie *-- Category
+Series *-- Category
+
+@enduml
