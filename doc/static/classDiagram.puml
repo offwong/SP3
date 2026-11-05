@@ -1,68 +1,51 @@
 @startuml
-'https://plantuml.com/class-diagram
 
-
+' Superklasse for streamingtjenester
 abstract class StreamingPlatform {
-- String name;
-+ StreamingPlatform(String name)
-+ createUser();
-+ logIn();
+    - String name
+    - ArrayList<MediaType> mediaTypes
+
+    + StreamingPlatform(String name)
+    + void createUser()
+    + void logIn()
+    + void addMedia(MediaType media)
 }
 
-class Netflix {
-- ArrayList<MediaType>MediaTypes
-+ Netflix(String name,
+' Specifikke underklasser (kun hvis de har unik logik)
+class Netflix extends StreamingPlatform
+class Viaplay extends StreamingPlatform
+class HBO extends StreamingPlatform
+class TV2 extends StreamingPlatform
+
+' Abstract superklasse for medier
+abstract class MediaType {
+    - String title
+    - double rating
+    - ArrayList<Category> categories
+
+    + MediaType(String title, double rating)
 }
 
-class Viaplay {
-- ArrayList<MediaType>MediaTypes
+' Underklasser med deres egne specifikke egenskaber
+class Movie extends MediaType {
+    - int durationMinutes
+
+    + Movie(String title, double rating, int durationMinutes)
 }
 
-class HBO {
-- ArrayList<MediaType>MediaTypes
-}
+class Series extends MediaType {
+    - int seasonsCount
 
-class TV2 {
-- ArrayList<MediaType>MediaTypes
-}
-
-class MediaType {
-- String type;
-+ MediaType(String type)
-}
-
-class Movie {
-- String name;
-- double rating;
-- ArrayList<Category>Categories
-+ Movie(String type, String name,double rating)
-}
-
-class Series {
-- String name;
-- double rating;
-- ArrayList<Category>Categories
-+ Series(String type, String name, double rating)
+    + Series(String title, double rating, int seasonsCount)
 }
 
 class Category {
--String name
+    - String name
 
+    + Category(String name)
 }
 
-
-
-StreamingPlatform <|-- Netflix
-StreamingPlatform <|-- Viaplay
-StreamingPlatform <|-- HBO
-StreamingPlatform <|-- TV2
-Netflix *-- MediaType
-Viaplay *-- MediaType
-HBO *-- MediaType
-TV2 *-- MediaType
-MediaType <|-- Movie
-MediaType <|-- Series
-Movie *-- Category
-Series *-- Category
-
+' Relationer
+StreamingPlatform "1" o-- "*" MediaType : indeholder
+MediaType "1" o-- "*" Category : tilhører
 @enduml
