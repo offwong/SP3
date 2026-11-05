@@ -37,12 +37,21 @@ class StreamingPlatform {
     - ArrayList<User> users
 
     + StreamingPlatform(String name)
-    + void addMedia(MediaType media)
+    + void addWatchedMedia(MediaType media)
     + void addUser(User user)
     + User login(String username, String password)
     + ArrayList<MediaType> searchMedia(String title)
+    + Arraylist<MediaType> searchWatchedMedia(String title)
     + ArrayList<MediaType> getMediaByCategory(Category category)
+    + void playMovie(Movie movie, User user)
+
 }
+
+interface Playable
+
+
+
+
 
 ' Abstrakt superklasse for medier (Film & Serier)
 abstract class MediaType {
