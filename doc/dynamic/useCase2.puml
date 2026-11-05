@@ -1,0 +1,52 @@
+
+@startuml useCase
+
+
+actor user
+
+rectangle Streamingtjeneste {
+  usecase "StartTjeneste" as UC1
+  usecase "registreBruger" as UC2
+  usecase "Log in" as UC3
+  usecase "MedieFormat" as UC4
+  usecase "Start/Fortsæt" as UC6
+  usecase "Pause/Afslut" as UC7
+  usecase "SøgeFilm/Serie" as UC8
+  usecase "GemteFilm/Serie" as UC9
+  usecase "SeteFilm/Serie" as UC10
+  usecase "Film/Serie_Kategori" as UC11
+  usecase "VælgFilm/Serie" as UC12
+  usecase "GemFilm/Serie" as UC13
+  usecase "FjernFilm/Serie" as UC14
+
+
+}
+
+user --> UC1
+
+UC1 --> UC2
+UC1 --> UC3
+UC2 --> UC3
+
+UC3 --> UC4
+UC3 --> UC8
+UC3 --> UC9
+UC3 --> UC10
+
+UC4 --> UC11
+UC11 --> UC12
+UC8 --> UC12
+UC9 --> UC12
+UC10 --> UC12
+
+UC12 --> UC6
+UC6 --> UC7
+
+UC6 --> UC10 : tilføjes til
+UC12 --> UC9 : gem / fjern
+
+UC12 --> UC13
+UC12 --> UC14
+UC13 --> UC9
+UC14 --> UC9
+@enduml
