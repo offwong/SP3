@@ -1,56 +1,28 @@
 @startuml
-'https://plantuml.com/object-diagram
-title SP3 - overblik over softwareSystem
+' Conceptual Domain Model
 
-object Bruger
-object streamingTjeneste
-object Netflix
-object HBO
-object viaPlay
-object Tv2
-object film
-object serie
-object kategori
-object medieForm
-object crime
-object romance
-object sci-fi
-object war
-object drama
-object comedy
+object StreamingPlatform
+object User
+object MediaType
+object Movie
+object Series
+object Season
+object Episode
+object Category
 
 
 
 
-Bruger --* streamingTjeneste
+MediaType <|-- Movie
+MediaType <|-- Series
+MediaType <|-- Category
 
-streamingTjeneste <|-- Netflix
-streamingTjeneste <|-- HBO
-streamingTjeneste <|-- viaPlay
-streamingTjeneste <|-- Tv2
-film *-- kategori
-serie *-- kategori
-Netflix *-- medieForm
-HBO *-- medieForm
-viaPlay *-- medieForm
-Tv2 *-- medieForm
-medieForm <|-- film
-medieForm <|-- serie
-kategori <|-- drama
-kategori <|-- crime
-kategori <|-- romance
-kategori <|-- sci-fi
-kategori <|-- war
-kategori <|-- comedy
+StreamingPlatform *--  User
+StreamingPlatform *--  MediaType
 
+User *--  MediaType : set/gemt
 
-
-
-
-
-
-
-
-
+Series *--  Season
+Season  *--  Episode
 
 @enduml
