@@ -21,7 +21,6 @@ rectangle Streamingtjeneste {
   usecase "Hoved Menu" as UC15
 
 
-
 }
 
 user --> UC1
@@ -53,5 +52,6 @@ UC13 --> UC9
 UC14 --> UC9
 
 UC7 --> UC15
+
 
 @enduml
