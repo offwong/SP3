@@ -7,7 +7,7 @@ public abstract class MediaType {
     private ArrayList<String> genres;
     private double rating;
 
-    public Media(String title, int releasePeriod, ArrayList<String> genres, double rating) {
+    public MediaType(String title, int releasePeriod, ArrayList<String> genres, double rating) {
         this.title = title;
         this.releasePeriod = releasePeriod;
         this.genres = genres;
@@ -32,6 +32,6 @@ public abstract class MediaType {
 
     @Override
     public String toString() {
-        return title + " (" + releaseYear + ") Rating: " + rating;
+        return title + " (" + releasePeriod + ") Rating: " + rating;
     }
 }

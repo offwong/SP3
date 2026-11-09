@@ -1,2 +1,26 @@
-public class Category {
+public enum Category {
+
+    CRIME,
+    DRAMA,
+    BIOGRAPHY,
+    HISTORY,
+    WAR,
+    ROMANCE,
+    MYSTERY,
+    ADVENTURE,
+    FAMILY,
+    FANTASY,
+    THRILLER,
+    HORROR,
+    FILM_NOIR,
+    MUSICAL,
+    ACTION,
+    SCI_FI,
+    COMEDY,
+    WESTERN,
+    SPORT,
+    MUSIC,
+    ANIMATION,
+    DOCUMENTARY,
+    TALK_SHOW
 }
