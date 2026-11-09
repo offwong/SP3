@@ -1,0 +1,83 @@
+@startuml classDiagram
+
+abstract class StreamingPlatform {
+  - String name
+  - ArrayList<MediaType> mediaTypes
+  - ArrayList<User> users
+
+  + User createUser(String username, String password)
+  + User logIn(String username, String password)
+}
+
+class User {
+  - String username
+  - String password
+  - ArrayList<MediaType> watchedMedia
+  - ArrayList<MediaType> savedMedia
+
+  + String getUsername()
+  + String getPassword()
+}
+
+abstract class MediaType {
+  - String title
+  - int releaseYear
+  - double rating
+  - ArrayList<Category> categories
+}
+
+class Movie {
+  - int durationMinutes
+}
+
+class Series {
+  - ArrayList<Season> seasons
+}
+
+class Season {
+  - int seasonNumber
+  - ArrayList<Episode> episodes
+}
+
+class Episode {
+  - String title
+  - int episodeNumber
+  - int durationMinutes
+}
+
+class Category {
+  - String name
+}
+
+class TextUI {
+  - Scanner scan
+
+  + String promptText(String msg)
+  + int promptNumeric(String msg)
+  + void displayList(ArrayList<String> list, String msg)
+  + void displayMessage(String msg)
+}
+
+class FileIO {
+  + ArrayList<User> readUserData(String filePath)
+  + void saveUserData(String filePath, ArrayList<User> users)
+}
+
+StreamingPlatform -- User : har
+StreamingPlatform -- MediaType : tilbyder
+
+MediaType <|-- Movie
+MediaType <|-- Series
+
+MediaType -- Category : kategoriseres som
+
+User -- MediaType : har set
+User -- MediaType : gemt til senere
+
+Series *-- Season : består af
+Season *-- Episode : består af
+
+StreamingPlatform ..> TextUI : bruger
+StreamingPlatform ..> FileIO : bruger
+
+@enduml

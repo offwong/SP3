@@ -1,0 +1,54 @@
+@startuml useCase
+
+
+actor Bruger
+
+rectangle "Streamingtjeneste" {
+  usecase "Start tjeneste" as UC1
+  usecase "Opret bruger" as UC2
+  usecase "Log ind" as UC3
+  usecase "Vis hovedmenu" as UC4
+  usecase "Søg medie" as UC5
+  usecase "Søg kategori" as UC6
+  usecase "Se sete medier" as UC7
+  usecase "Se gemte medier" as UC8
+  usecase "Vælg medie" as UC9
+  usecase "Afspil medie" as UC10
+  usecase "Gem medie" as UC11
+  usecase "Fjern gemt medie" as UC12
+  usecase "Afslut tjeneste" as UC13
+  usecase "Afslut medie" as UC14
+}
+
+
+
+
+Bruger --> UC1
+
+UC1 ..> UC2 : opretter sig
+UC1 ..> UC3 : logger ind
+UC2 ..> UC4
+UC3 ..> UC4
+
+UC4 ..> UC5
+UC4 ...> UC6
+UC4 ...> UC7
+UC4 ..> UC8
+UC4 ...> UC13
+
+UC5 ...> UC9
+UC6 ..> UC9
+UC7 ..> UC9
+UC8 ..> UC9
+
+UC9 ..> UC10
+UC9 ..> UC11
+UC9 ..> UC12
+
+UC10 --> UC14
+UC14 --> UC4 : tilbage
+UC11 --> UC4 : tilbage
+UC12 --> UC4 : tilbage
+
+
+@enduml
