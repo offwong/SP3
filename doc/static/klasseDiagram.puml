@@ -45,7 +45,7 @@ class Episode {
   - int durationMinutes
 }
 
-class Category {
+enum Category {
   - String name
 }
 
@@ -61,6 +61,15 @@ class TextUI {
 class FileIO {
   + ArrayList<User> readUserData(String filePath)
   + void saveUserData(String filePath, ArrayList<User> users)
+}
+
+interface playable {
+
+public void play()
+public string getTitle()
+
+
+
 }
 
 StreamingPlatform -- User : har

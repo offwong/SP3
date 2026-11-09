@@ -15,7 +15,7 @@ Medie <|-- Serie
 Streamingtjeneste --> Bruger : har
 Streamingtjeneste --> Medie : tilbyder
 
-Medie --> Kategori : tilhører
+Medie --> Kategori : har
 
 Bruger --> Medie : har set
 Bruger --> Medie : gemt til senere
