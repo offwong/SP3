@@ -1,5 +1,4 @@
 public class Episode {
-
     private int episodeNumber;
 
     public Episode(int episodeNumber) {
@@ -8,5 +7,10 @@ public class Episode {
 
     public int getEpisodeNumber() {
         return episodeNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Afsnit " + episodeNumber;
     }
 }

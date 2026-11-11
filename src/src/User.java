@@ -3,8 +3,8 @@ import java.util.ArrayList;
 public class User {
     private String username;
     private String password;
-    private ArrayList<Movies>watchedMovies;
-    private ArrayList<Movies>savedMovies;
+    private ArrayList<Movie>watchedMovies;
+    private ArrayList<Movie>savedMovies;
 
     public User (String username, String password) {
         this.username = username;
@@ -12,7 +12,7 @@ public class User {
         this.watchedMovies = new ArrayList<>();
         this.savedMovies = new ArrayList<>();
     }
-    public void addWatchedMovie (Movies movie) {
+    public void addWatchedMovie (Movie movie) {
         if (!savedMovies.contains(movie)){
             savedMovies.add(movie);
         }

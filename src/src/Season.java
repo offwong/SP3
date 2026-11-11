@@ -1,20 +1,24 @@
 import java.util.ArrayList;
 
 public class Season {
-
     private int seasonNumber;
     private ArrayList<Episode> episodes;
 
-    public Season(int seasonNumber) {
+    public Season(int seasonNumber, ArrayList<Episode> episodes) {
         this.seasonNumber = seasonNumber;
-        this.episodes = new ArrayList<>();
+        this.episodes = episodes;
     }
 
-    public void addEpisode(Episode episode) {
-        episodes.add(episode);
+    public int getSeasonNumber() {
+        return seasonNumber;
     }
 
     public ArrayList<Episode> getEpisodes() {
         return episodes;
+    }
+
+    @Override
+    public String toString() {
+        return "Sæson " + seasonNumber + " (" + episodes.size() + " afsnit)";
     }
 }

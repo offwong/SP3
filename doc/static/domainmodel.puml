@@ -1,29 +1,19 @@
 @startuml
-' Conceptual Domain Model
 
-object StreamingPlatform
 object User
-object MediaType
+object StreamingPlatform
 object Movie
 object Series
 object Season
 object Episode
-object Category
+object Genre
 
-
-
-
-
-MediaType <|-- Movie
-MediaType <|-- Series
-MediaType <|-- Category
-
-StreamingPlatform *--  User
-StreamingPlatform *--  MediaType
-
-User *--  MediaType : set/gemt
-
-Series *--  Season
-Season  *--  Episode
-
+StreamingPlatform --> User
+StreamingPlatform --> Movie
+StreamingPlatform --> Series
+StreamingPlatform --> Genre
+Movie --> Genre
+Series --> Season
+Series --> Genre
+Season --> Episode
 @enduml

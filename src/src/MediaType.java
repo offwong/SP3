@@ -4,10 +4,10 @@ public abstract class MediaType {
 
     private String title;
     private int releasePeriod;
-    private ArrayList<String> genres;
+    private ArrayList<Genre> genres;
     private double rating;
 
-    public MediaType(String title, int releasePeriod, ArrayList<String> genres, double rating) {
+    public MediaType(String title, int releasePeriod, ArrayList<Genre> genres, double rating) {
         this.title = title;
         this.releasePeriod = releasePeriod;
         this.genres = genres;
@@ -22,7 +22,7 @@ public abstract class MediaType {
         return releasePeriod;
     }
 
-    public ArrayList<String> getGenres() {
+    public ArrayList<Genre> getGenres() {
         return genres;
     }
 
