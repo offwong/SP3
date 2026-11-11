@@ -66,8 +66,8 @@ class FileIO {
 interface playable {
 
 public void play()
-public string getTitle()
 
+public void getTitle()
 
 
 }
