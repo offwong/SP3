@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public abstract class MediaType {
+public abstract class MediaType implements Playable{
 
     private String title;
     private int releasePeriod;
@@ -22,8 +22,8 @@ public abstract class MediaType {
         return releasePeriod;
     }
 
-    public ArrayList<String> getGenres() {
-        return genres;
+    public ArrayList<String> getCategory() {
+        return category;
     }
 
     public double getRating() {

@@ -1,93 +1,95 @@
+# Use case-beskrivelser – Streamingtjeneste
 
-### UC1: Start Tjeneste
+Aktør i alle use cases: **Bruger**
 
-- Systemet opretter en streaming tjeneste og beder brugeren om at logge ind, hvis der er gemt en bruger. Hvis der ikke er gemt en bruger beder systemet oprette en ny bruger(se UC2: Opret bruger).
+---
 
+### UC1: Start tjeneste
 
-- **Rainy day:** Der findes en gemt bruger, men man ønsker at oprette en ny: Hvis en gemt bruger eksisterer, skal brugeren have mulighed for at fortsætte med log ind (se UC3: Log ind) eller oprette en ny bruger. 
-
+- **Forudsætning:** Programmet startes.
+- **Sunny day:** Systemet indlæser film, serier og brugere fra filerne og viser startmenuen med valgene "Opret bruger" (UC2), "Log ind" (UC3) og "Afslut" (UC13).
+- **Rainy day:** En af datafilerne kan ikke læses (IOException). Systemet skriver "Kunne ikke indlæse data. Programmet lukkes." og afslutter pænt i stedet for at crashe.
+- **Rainy day:** Brugeren skriver noget, der ikke er et menuvalg. Systemet skriver "Ugyldigt valg." og viser startmenuen igen.
 
 ### UC2: Opret bruger
 
-- Programmet er startet og brugeren har valgt "Opret bruger" i startmenuen.
-Brugeren opretter en ny konto, så han eller hun, kan logge ind og have egne lister.
-
-
-- **Rainy day:** Brugernavnet er allerede i brug. Systemet beder brugeren om at taste nyt brugernavn ind.
+- **Forudsætning:** Brugeren har valgt "Opret bruger" i startmenuen.
+- **Sunny day:** Brugeren indtaster brugernavn og password. Systemet gemmer brugeren i filen `userData.csv`, så brugeren også findes næste gang programmet starter. Brugeren sendes tilbage til startmenuen og kan nu logge ind (UC3).
+- **Rainy day:** Brugernavnet er allerede i brug. Systemet skriver "Brugernavnet er allerede i brug." og sender brugeren tilbage til startmenuen.
+- **Rainy day:** Brugeren kan ikke gemmes i filen. Systemet informerer brugeren om fejlen.
 
 ### UC3: Log ind
 
-- Hvis der findes en gemt bruger, bedes brugeren logge ind.
-
-
-- **Rainy day:** Brugernavn eller adgangskode er forkert. Opret en ny bruger(se UC2: Opret bruger).
-
-
+- **Forudsætning:** Brugeren har valgt "Log ind" i startmenuen.
+- **Sunny day:** Brugeren indtaster brugernavn og password. Systemet finder en bruger, hvor begge dele passer, og viser hovedmenuen (UC4).
+- **Rainy day:** Brugernavn eller password er forkert. Systemet skriver "Forkert brugernavn eller password." og sender brugeren tilbage til startmenuen, hvor brugeren kan prøve igen eller oprette en ny bruger (UC2).
 
 ### UC4: Hovedmenu
 
-- Hoved menu viser brugeren valg for følgende:
-1. UC5: Søg medie
-2. UC6: Søg kategori 
-3. UC7: Se sete medier
-4. UC8: Se gemte medier
+- **Forudsætning:** Brugeren er logget ind.
+- **Sunny day:** Hovedmenuen viser følgende valg:
+  1. Søg efter film eller serie (UC5)
+  2. Søg efter kategori (UC6)
+  3. Se sete medier (UC7)
+  4. Se gemte medier (UC8)
+  0. Log ud – brugeren sendes tilbage til startmenuen (UC1)
+- **Rainy day:** Brugeren skriver noget, der ikke er et menuvalg. Systemet skriver "Ugyldigt valg." og viser hovedmenuen igen.
 
-### UC5: Søg medie 
+### UC5: Søg medie
 
-
-- Hvis brugeren vælger at søge medie kan brugeren direkte søge efter medie på det specifikke medie navn.
-
-
-- **Rainy day:** Hvis mediet ikke findes, vil systemet udskrive en besked, med at mediet ikke eksisterer.
-
-
+- **Forudsætning:** Brugeren har valgt "Søg efter film eller serie" i hovedmenuen.
+- **Sunny day:** Brugeren indtaster en titel eller en del af en titel. Systemet søger i både film og serier (uden at skelne mellem store og små bogstaver) og viser en nummereret liste over resultaterne. Brugeren kan vælge et medie (UC9).
+- **Rainy day:** Ingen medier matcher søgningen. Systemet skriver "Listen er tom." og sender brugeren tilbage til hovedmenuen.
 
 ### UC6: Søg kategori
 
-- Brugeren er logget ind og har valgt "Søg kategori" i hovedmenu (se UC4: Hovedmenu). Brugeren kan nu direkte søge efter en specifik kategori og få vist listen over alle film/serier i kategorien.
-
-
-- **Rainy day:** Brugeren har indtastet ugyldig kategori. Meddel brugeren om at den indtastede kategori ikke findes og bed brugeren om at indtaste ny kategori:
+- **Forudsætning:** Brugeren har valgt "Søg efter kategori" i hovedmenuen.
+- **Sunny day:** Brugeren indtaster en kategori, fx "War". Systemet viser en nummereret liste over alle film og serier i kategorien. Brugeren kan vælge et medie (UC9).
+- **Rainy day:** Kategorien findes ikke, eller der er ingen medier i den. Systemet skriver "Listen er tom." og sender brugeren tilbage til hovedmenuen.
 
 ### UC7: Se sete medier
 
-- Viser brugeren en liste over hvilke medie brugeren allerede har set. 
-
-- Brugeren kan vælge imellem medie i listen hvis brugeren vil se mediet igen kan brugeren vælge dette.
-
+- **Forudsætning:** Brugeren har valgt "Se sete film" i hovedmenuen.
+- **Sunny day:** Systemet viser en nummereret liste over de medier, brugeren har afspillet. Brugeren kan vælge et medie (UC9), fx for at se det igen.
+- **Rainy day:** Brugeren har ikke set noget endnu. Systemet skriver "Listen er tom." og sender brugeren tilbage til hovedmenuen.
 
 ### UC8: Se gemte medier
 
-- Systemet udskriver en liste over gemte medier på brugerens liste. 
-
-
-- **Rainy day:** Hvis listen er tom, så udskriver systemet at der ikke er nogen gemte medier.
+- **Forudsætning:** Brugeren har valgt "Se gemte film" i hovedmenuen.
+- **Sunny day:** Systemet viser en nummereret liste over de medier, brugeren har gemt til senere. Brugeren kan vælge et medie (UC9).
+- **Rainy day:** Brugeren har ikke gemt noget. Systemet skriver "Listen er tom." og sender brugeren tilbage til hovedmenuen.
 
 ### UC9: Vælg medie
 
-- Brugeren skal tage et valg mellem: UC10: Afspil medie eller UC11: Gem medie.
-
-
-- **Rainy day:** Hvis mediet allerede er gemt, skal brugeren have muligheden for UC12: Fjern gemt medie.
+- **Forudsætning:** Brugeren får vist en liste fra UC5, UC6, UC7 eller UC8.
+- **Sunny day:** Brugeren skriver nummeret på et medie. Systemet viser det valgte medie og valgene "Afspil" (UC10), "Gem til senere" (UC11), "Fjern fra gemte" (UC12) og "Tilbage".
+- **Rainy day:** Brugeren skriver bogstaver i stedet for et tal. Systemet skriver "Skriv venligst et tal." og spørger igen.
+- **Rainy day:** Brugeren skriver et nummer, der ikke findes på listen. Systemet skriver "Ugyldigt nummer." og sender brugeren tilbage til hovedmenuen.
 
 ### UC10: Afspil medie
 
-- Efter brugeren har valgt et medie, bliver mediet afspillet. Derefter kan brugeren vælge at afslutte mediet og derefter bliver ført til hovedMenu(UC14)
+- **Forudsætning:** Brugeren har valgt et medie (UC9) og valgt "Afspil".
+- **Sunny day:** Mediet afspilles. En film skriver fx "The Godfather afspilles nu...", og en serie skriver også antallet af sæsoner. Mediet tilføjes automatisk til brugerens liste over sete medier (UC7). Derefter fortsætter brugeren til UC14.
+- **Rainy day:** Mediet er allerede på listen over sete medier. Det afspilles igen, men tilføjes ikke til listen en gang til.
 
 ### UC11: Gem medie
 
-Brugeren har valgt sin film (se UC9: Vælg medie) og kan nu gemme medie.
-`
-- **Rainy day:** Er mediet allerede gemt skal brugeren have mulighed for at fjerne det gemte medie (se UC12: Fjern gemt medie).
+- **Forudsætning:** Brugeren har valgt et medie (UC9) og valgt "Gem til senere".
+- **Sunny day:** Mediet tilføjes til brugerens liste over gemte medier (UC8), og systemet bekræfter det.
+- **Rainy day:** Mediet er allerede gemt. Det tilføjes ikke en gang til, så det ikke står dobbelt på listen.
 
 ### UC12: Fjern gemt medie
 
-- Brugeren kan vælge at fjerne sine gemte medier i sin liste over gemte medier (se UC8: Se gemte medier).
-   
-### UC13: Afslut tjeneste 
+- **Forudsætning:** Brugeren har valgt et medie (UC9) og valgt "Fjern fra gemte".
+- **Sunny day:** Mediet fjernes fra brugerens liste over gemte medier, og systemet bekræfter det.
+- **Rainy day:** Mediet er ikke på listen over gemte medier. Der sker ingen ændring.
 
-- Når brugeren er på hovedmenu(UC4) kan brugeren bestemme afslutte tjeneste hvis brugeren ikke vælge at se videre.
+### UC13: Afslut tjeneste
+
+- **Forudsætning:** Brugeren er i startmenuen (logger man ud fra hovedmenuen, kommer man tilbage hertil).
+- **Sunny day:** Brugeren vælger "Afslut". Systemet skriver "Programmet afsluttes." og lukker.
 
 ### UC14: Afslut medie
 
-- Hvis bruger har valgt at afslut medie, bliver brugeren ført til hovedmenu(UC4).
+- **Forudsætning:** Et medie er blevet afspillet (UC10).
+- **Sunny day:** Afspilningen er slut, og brugeren føres tilbage til hovedmenuen (UC4).

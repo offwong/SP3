@@ -3,32 +3,45 @@ import java.util.ArrayList;
 public class User {
     private String username;
     private String password;
-    private ArrayList<Movies>watchedMovies;
-    private ArrayList<Movies>savedMovies;
+    private ArrayList<MediaType> watchedMedia;
+    private ArrayList<MediaType> savedMedia;
 
-    public User (String username, String password) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.watchedMovies = new ArrayList<>();
-        this.savedMovies = new ArrayList<>();
+        this.watchedMedia = new ArrayList<>();
+        this.savedMedia = new ArrayList<>();
     }
-    public void addWatchedMovie (Movies movie) {
-        if (!savedMovies.contains(movie)){
-            savedMovies.add(movie);
+
+    public void addWatchedMedia(MediaType media) {
+        if (!watchedMedia.contains(media)) {
+            watchedMedia.add(media);
         }
     }
 
-
-    public String getUsername(){
-        return this.username;
+    public void addSavedMedia(MediaType media) {
+        if (!savedMedia.contains(media)) {
+            savedMedia.add(media);
+        }
     }
 
-
-    public String getPassword(){
-        return this.password;
+    public void removeSavedMedia(MediaType media) {
+        savedMedia.remove(media);
     }
 
+    public ArrayList<MediaType> getWatchedMedia() {
+        return watchedMedia;
+    }
 
+    public ArrayList<MediaType> getSavedMedia() {
+        return savedMedia;
+    }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 }
-

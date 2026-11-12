@@ -16,4 +16,9 @@ public class Series extends MediaType {
     public ArrayList<Season> getSeasons() {
         return seasons;
     }
+
+    @Override
+    public void play(){
+        System.out.println(getTitle() + " afspilles nu... (" + seasons.size() + " sæsoner)");
+    }
 }

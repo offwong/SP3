@@ -27,14 +27,15 @@ Bruger --> UC1
 
 UC1 ..> UC2 : opretter sig
 UC1 ..> UC3 : logger ind
-UC2 ..> UC4
+UC2 ..> UC3 : derefter log ind
 UC3 ..> UC4
 
 UC4 ..> UC5
 UC4 ...> UC6
 UC4 ...> UC7
 UC4 ..> UC8
-UC4 ...> UC13
+UC1 ..> UC13 : afslutter
+UC4 ...> UC1 : log ud
 
 UC5 ...> UC9
 UC6 ..> UC9
